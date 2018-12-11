@@ -50,7 +50,6 @@ public class DeleteEmployee extends HttpServlet {
             }
             
             rd = request.getRequestDispatcher("View/viewEmployee.jsp");
-//            rd.forward(request, response);
             rd.include(request, response);
         }
     }

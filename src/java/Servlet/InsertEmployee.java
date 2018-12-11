@@ -6,7 +6,6 @@
 package Servlet;
 
 import controllers.EmployeeControllers;
-import entities.Employees;
 import interfaces.EmployeeInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,15 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
 
 /**
  *
  * @author Nitani
  */
-@WebServlet(name = "EditEmployee", urlPatterns = {"/editEmployee"})
-public class EditEmployee extends HttpServlet {
+@WebServlet(name = "InsertEmployee", urlPatterns = {"/insertEmployee"})
+public class InsertEmployee extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,12 +36,23 @@ public class EditEmployee extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("ida");
-        HttpSession session = request.getSession();
+        String employeeId=request.getParameter("id");
+        String firstName=request.getParameter("firstName");
+        String lastName=request.getParameter("lastName");
+        String email=request.getParameter("email");
+        String phoneNumber=request.getParameter("phone");
+        String hireDate=request.getParameter("date");
+        String jobId=request.getParameter("job");
+        String salary=request.getParameter("salary");
+        String commissionPct=request.getParameter("commission");
+        String managerId=request.getParameter("manager");
+        String departmentId=request.getParameter("department");
+        
         try (PrintWriter out = response.getWriter()) {
-            EmployeeInterface i = new EmployeeControllers(HibernateUtil.getSessionFactory());
-            Employees r = (Employees) i.getById(id);
-            session.setAttribute("ida", r);
+            SessionFactory SessionFactory = new HibernateUtil().getSessionFactory();
+            EmployeeInterface i = new EmployeeControllers(SessionFactory);
+            
+            i.insert(employeeId, firstName, lastName, email, phoneNumber, hireDate, jobId, salary, commissionPct, managerId, departmentId);
             response.sendRedirect("View/viewEmployee.jsp");
         }
     }

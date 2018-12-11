@@ -8,6 +8,10 @@
         <servlet-name>Servlet</servlet-name>
         <url-pattern>/servlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertEmployee</servlet-name>
+        <url-pattern>/insertEmployee</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -24,7 +24,7 @@
     <body>
         <h1>Hello World!</h1>
         <% String idEdit = "", nameEdit = "";
-        if(session.getAttribute("ids")!=null){
+        if(session.getAttribute("idsa")!= null){
             Regions r = (Regions) session.getAttribute("ids");
             idEdit = r.getRegionId().toString();
             nameEdit = r.getRegionName();

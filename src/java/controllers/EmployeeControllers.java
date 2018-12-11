@@ -53,7 +53,7 @@ public class EmployeeControllers implements EmployeeInterface {
     public Boolean insert(String employeeId, String firstName, String lastName, String email, String phoneNumber, String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId) {
         boolean hasil = false;
         try {
-            DateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
             Date dates = format.parse(hireDate);
             int employeeid = Integer.valueOf(employeeId);
             short sal = Short.valueOf(salary);

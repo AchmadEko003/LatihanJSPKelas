@@ -42,7 +42,7 @@ public class EditServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             RegionInterface i = new RegionControllers(HibernateUtil.getSessionFactory());
             Regions r = (Regions) i.getById(id);
-            session.setAttribute("ids", r);
+            session.setAttribute("idsa", r);
             response.sendRedirect("View/viewRegion.jsp");
         }
     }
