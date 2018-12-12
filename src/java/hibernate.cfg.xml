@@ -45,7 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">system</property>
-    <property name="hibernate.connection.password">Mukhlish354</property>
+    <property name="hibernate.connection.password">password</property>
     <property name="hibernate.default_schema">HR</property>
     <property name="hibernate.connection.autocommit">true</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
@@ -58,5 +58,12 @@ Contributor(s):
     <mapping class="entities.Locations"/>
     <mapping class="entities.Regions"/>
     <mapping class="entities.Employees"/>
+    <mapping class="entities1.Account"/>
+    <mapping class="entities1.Countrie"/>
+    <mapping class="entities1.Department"/>
+    <mapping class="entities1.Employee"/>
+    <mapping class="entities1.Job"/>
+    <mapping class="entities1.Location"/>
+    <mapping class="entities1.Region"/>
   </session-factory>
 </hibernate-configuration>
