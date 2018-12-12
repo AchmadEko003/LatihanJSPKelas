@@ -5,7 +5,9 @@
  */
 package interfaces;
 
+import java.math.BigDecimal;
 import java.util.List;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -13,5 +15,19 @@ import java.util.List;
  */
 public interface CountryInterface {
     public List<Object> search(String keyword);
+
+    public Object getById(Object id);
+
+    public boolean insert(String countryId, String countryName, String regId);
+
+    public String update(String id, String name, String regionId);
+
+    public boolean delete(String countryId);
+
+    public List<Object> getAll();
+ 
+   public Object getByIdCountry(String id);
+       
+    
     
 }

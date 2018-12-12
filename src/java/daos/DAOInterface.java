@@ -17,8 +17,10 @@ public interface DAOInterface {
     public List<Object> doDDL(Object table, String keyword);//sga
     public List<Object> doDatasId(Object table, String keyword);//sga
     public Object getById(Object table, Object id);
+    public Object getByIdCountry(Object table, String id);
     public boolean insImg(int paramIndex,InputStream stream,long length);
     public boolean login(Object user, String password);
     public Integer getUser(Object user);
     public boolean getIdProfile(Object id);
+
 }

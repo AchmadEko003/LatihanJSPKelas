@@ -115,12 +115,59 @@ public class FunctionDAO {
      * @param query
      * @return
      */
+//    public Object getById(Object table, Object id) {
+//        Object object = new Object();
+//        String className = table.getClass().getName();
+//        String classNames = className.substring(className.indexOf(".") + 1);
+//        className = classNames.replace("s", "");
+//        String query = "FROM " + classNames + " where " + className.toLowerCase() +"Id =" + id ;
+//        try {
+//            session = factory.openSession();
+//            transaction = session.beginTransaction();
+//            object = session.createQuery(query).uniqueResult();
+//            transaction.commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//        } finally {
+//            session.close();
+//        }
+//        return object;
+//    }
     public Object getById(Object table, Object id) {
         Object object = new Object();
         String className = table.getClass().getName();
-        String classNames = className.substring(className.indexOf(".") + 1);
-        className = classNames.replace("s", "");
-        String query = "FROM " + classNames + " where " + className.toLowerCase() +"Id =" + id ;
+        className = className.substring(className.indexOf(".") + 1);
+        String ClassName = className.toLowerCase();
+//        System.out.println(ClassName);
+        String query = "FROM " + className + " where " + ClassName + "Id = '" + id + "'";
+        System.out.println(query);
+        try {
+            session = factory.openSession();
+            transaction = session.beginTransaction();
+            object = session.createQuery(query).uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return object;
+    }
+
+    public Object getByIdCountry(Object table, String id) {
+        Object object = new Object();
+        String className = table.getClass().getSimpleName();
+//        className = className.substring(className.indexOf(".") + 1);
+//        String ClassName = className.toLowerCase();
+//        System.out.println(ClassName);
+        String query = "FROM " + className + " where countryId = '" + id + "'";
+        System.out.println(query);
         try {
             session = factory.openSession();
             transaction = session.beginTransaction();
@@ -152,7 +199,7 @@ public class FunctionDAO {
         }
         return hasil;
     }
-    
+
     public List<Object> getDatasId(Object entities, String key) {
         List<Object> rs = new ArrayList<>();
         String className = entities.getClass().getSimpleName();
