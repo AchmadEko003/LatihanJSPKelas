@@ -168,6 +168,9 @@ public class FunctionDAO {
 //        System.out.println(ClassName);
         String query = "FROM " + className + " where countryId = '" + id + "'";
         System.out.println(query);
+        String classNames = className.substring(className.indexOf(".") + 1);
+        className = classNames.replace("s", "");
+        String query = "FROM " + classNames + " where " + className.toLowerCase() +"Id ='" + id +"'";
         try {
             session = factory.openSession();
             transaction = session.beginTransaction();

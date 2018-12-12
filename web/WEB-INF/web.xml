@@ -4,6 +4,14 @@
         <servlet-name>Servlet</servlet-name>
         <servlet-class>Servlet.Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteJob</servlet-name>
+        <servlet-class>Servlet.DeleteJob</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateJob</servlet-name>
+        <servlet-class>Servlet.UpdateJob</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet</servlet-name>
         <url-pattern>/servlet</url-pattern>
@@ -11,6 +19,18 @@
     <servlet-mapping>
         <servlet-name>InsertEmployee</servlet-name>
         <url-pattern>/insertEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddJob</servlet-name>
+        <url-pattern>/addJob</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteJob</servlet-name>
+        <url-pattern>/DeleteJob</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateJob</servlet-name>
+        <url-pattern>/UpdateJob</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
