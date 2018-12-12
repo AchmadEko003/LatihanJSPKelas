@@ -17,7 +17,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         <%  String idEdit="", titleEdit="", minEdit="", maxEdit="";
         if (session.getAttribute("isiJob")!=null) {
                 Jobs j = (Jobs)session.getAttribute("isiJob");
@@ -28,8 +27,10 @@
                 System.out.println(j);
         }
         %>
-        <form action="../addJob">
-            <table border="0">
+        <div style="margin-top: 50px">
+            <h1 align="center">Form Job</h1>
+            <form action="../addJob">
+            <table border="0" align="center">
                 <tbody
                     <tr>
                         <td>Job id</td>
@@ -53,22 +54,25 @@
                     </tr>
                     <% session.removeAttribute("isiJob"); %>
                     <tr>
-                        <td colspan="3" align="center">
-                            <input type="submit" value="simpan" name="simpan" />
+                        <td colspan="3" align="center" width="100">
+                            <input type="submit" value="Simpan" name="simpan" />
                         </td>
                     </tr>
                 </tbody>
             </table>
 
         </form>
-        <h1>Table Job</h1>
-        <table border="1">
+        </div>
+        
+        <h1 align="center">Table Job</h1>
+        <table border="1" align="center">
             <thead>
                 <tr>
                     <th width="150">Job_id</th>
                     <th width="150">Job_title</th>
                     <th width="150">Min_salary</th>
                     <th width="150">Max_salary</th>
+                    <th colspan="2">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -82,8 +86,8 @@
                     <td><%= j.getJobTitle() %></td>
                     <td><%= j.getMinSalary() %></td>
                     <td><%= j.getMaxSalary() %></td>
-                    <td><a href="../UpdateJob?id=<%= j.getJobId()%>">Edit</a></td>
-                    <td><a href="../DeleteJob?id=<%= j.getJobId()%>">Delete</a></td>
+                    <td><a href="../UpdateJob?id=<%= j.getJobId()%>"><input type="submit" value="Edit" name="edit" /></a></td>
+                    <td><a href="../DeleteJob?id=<%= j.getJobId()%>"></a><input type="submit" value="Delete" name="Delete" /></td>
                 
                 <% 
                     }

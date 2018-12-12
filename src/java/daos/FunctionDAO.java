@@ -120,7 +120,7 @@ public class FunctionDAO {
         String className = table.getClass().getName();
         String classNames = className.substring(className.indexOf(".") + 1);
         className = classNames.replace("s", "");
-        String query = "FROM " + classNames + " where " + className.toLowerCase() +"Id =" + id ;
+        String query = "FROM " + classNames + " where " + className.toLowerCase() +"Id ='" + id +"'";
         try {
             session = factory.openSession();
             transaction = session.beginTransaction();
