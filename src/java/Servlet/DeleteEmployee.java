@@ -37,13 +37,14 @@ public class DeleteEmployee extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String regionId = request.getParameter("id");
+        String employeeId = request.getParameter("id");
+        String emails = request.getParameter("email");
         RequestDispatcher rd = null;
         try (PrintWriter out = response.getWriter()) {
             SessionFactory SessionFactory = new HibernateUtil().getSessionFactory();
             EmployeeInterface i = new EmployeeControllers(SessionFactory);
             
-            if(i.delete(regionId)){
+            if(i.delete(employeeId)){
                 out.println("Berhasil loh");
             }else{
                 out.println("Gagal");

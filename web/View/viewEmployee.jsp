@@ -31,12 +31,14 @@
             <% String idEdit = "", nameFirst = "", nameLast = "", emails = "", phoneNum = "", dateHire = "", jobs = "", sal = "", commissions = "", manage = "", dept = "";
                 if (session.getAttribute("ida") != null) {
                     Employees r = (Employees) session.getAttribute("ida");
+                    DateFormat formats = new SimpleDateFormat("d MMMM yyyy", Locale.ENGLISH);
                     idEdit = r.getEmployeeId().toString();
                     nameFirst = r.getFirstName();
                     nameLast = r.getLastName();
                     emails = r.getEmail();
                     phoneNum = r.getPhoneNumber();
-                    dateHire = r.getHireDate().toString();
+                    Date hire = r.getHireDate();
+                    dateHire = formats.format(hire).toString();
                     jobs = r.getJobId().getJobTitle();
                     sal = r.getSalary().toString();
                     commissions = r.getCommissionPct().toString();
@@ -45,7 +47,7 @@
                 }
             %>
 
-            <form class="form-group" action="../insertEmployee">
+            <form method="POST" class="form-group" action="../insertEmployee">
                 <div class="form-group">
                     <label for="id">ID:</label>
                     <input type="text" class="form-control" name="id" value="<%= idEdit%>">
@@ -53,11 +55,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="firstName" value="<%= nameFirst%>">
+                        <input type="text" class="form-control" name="firstName" value="<%= nameFirst%>">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" value="<%= nameLast%>">
+                        <input type="text" class="form-control" name="lastName" value="<%= nameLast%>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -120,8 +122,9 @@
                 <input class="form-control" id="myInput" type="text" placeholder="Search..">
             </form>
         </div>
+
         <br>
-        <div class="">  
+        <div class="table-responsive-xl">  
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -134,18 +137,18 @@
                         <th>Job</th>
                         <th>Salary</th>
                         <th>Commission Pct</th>
-                        <th>Manager</th>
                         <th>Department</th>
                         <th>DML</th>
                     </tr>
                 </thead>
-                <% SessionFactory factory = HibernateUtil.getSessionFactory();
-                    EmployeeInterface employeeInterface = new EmployeeControllers(factory);
-                    DateFormat formats = new SimpleDateFormat("d MMMM yyyy", Locale.ENGLISH);
-                    for (Object emp : employeeInterface.search("")) {
-                        Employees employees = (Employees) emp;
-                        Date hire = employees.getHireDate();%>
                 <tbody>
+                    <% SessionFactory factory = HibernateUtil.getSessionFactory();
+                        EmployeeInterface employeeInterface = new EmployeeControllers(factory);
+                        DateFormat formats = new SimpleDateFormat("d MMMM yyyy", Locale.ENGLISH);
+                        for (Object emp : employeeInterface.search("")) {
+                            Employees employees = (Employees) emp;
+                            Date hire = employees.getHireDate();%>
+
                     <tr>
                         <td><%= employees.getEmployeeId()%></td>
                         <td><%= employees.getFirstName()%></td>
@@ -159,8 +162,6 @@
                         <% if (employees.getCommissionPct() == null) { %><td>0</td>
                         <% } else {%> <td><%= employees.getCommissionPct()%></td>
                         <% }%>
-
-                        <td><%= employees.getManagerId().getFirstName()%></td>
 
                         <% if (employees.getDepartmentId() == null) {
                         %><td>-</td><% } else {

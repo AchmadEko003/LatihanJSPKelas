@@ -9,6 +9,7 @@ import controllers.EmployeeControllers;
 import interfaces.EmployeeInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,22 +37,22 @@ public class InsertEmployee extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String employeeId=request.getParameter("id");
-        String firstName=request.getParameter("firstName");
-        String lastName=request.getParameter("lastName");
-        String email=request.getParameter("email");
-        String phoneNumber=request.getParameter("phone");
-        String hireDate=request.getParameter("date");
-        String jobId=request.getParameter("job");
-        String salary=request.getParameter("salary");
-        String commissionPct=request.getParameter("commission");
-        String managerId=request.getParameter("manager");
-        String departmentId=request.getParameter("department");
-        
+        String employeeId = request.getParameter("id");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String phoneNumber = request.getParameter("phone");
+        String hireDate = request.getParameter("date");
+        String jobId = request.getParameter("job");
+        String salary = request.getParameter("salary");
+        String commissionPct = request.getParameter("commission");
+        String managerId = request.getParameter("manager");
+        String departmentId = request.getParameter("department");
+
         try (PrintWriter out = response.getWriter()) {
             SessionFactory SessionFactory = new HibernateUtil().getSessionFactory();
             EmployeeInterface i = new EmployeeControllers(SessionFactory);
-            
+
             i.insert(employeeId, firstName, lastName, email, phoneNumber, hireDate, jobId, salary, commissionPct, managerId, departmentId);
             response.sendRedirect("View/viewEmployee.jsp");
         }
