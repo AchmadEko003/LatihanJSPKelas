@@ -81,4 +81,10 @@ public class GeneralDAO implements DAOInterface {
     public boolean getIdProfile(Object id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Object getByIdCountry(Object table, String id) {
+        return this.fdao.getByIdCountry(table, id);
+    }
+
 }
